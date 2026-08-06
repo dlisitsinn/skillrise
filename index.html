@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SkillRise — курс выхода на доход онлайн</title>
+<meta name="description" content="Курс SkillRise: освой востребованную онлайн-профессию и выйди на доход от 80 000 ₽ в месяц за 8 недель. Практика, разборы, трудоустройство.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#101013; --bg2:#17171b; --card:#1c1c21; --ink:#f4f3ee; --soft:#a5a29a;
+  --lime:#d7f36b; --line:rgba(244,243,238,.12);
+  --bebas:'Bebas Neue',sans-serif; --sans:'Manrope',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.container{max-width:1240px;margin:0 auto;padding:0 32px}
+.kicker{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--lime);font-weight:800}
+h2.sec{font-family:var(--bebas);font-size:clamp(40px,5.4vw,72px);line-height:.98;letter-spacing:.02em}
+h2.sec span{color:var(--lime)}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:18px 38px;border-radius:12px;
+  font-size:14px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;cursor:pointer;transition:.22s;border:0;font-family:var(--sans)}
+.btn--fill{background:var(--lime);color:#12120e;box-shadow:0 10px 34px rgba(215,243,107,.28)}
+.btn--fill:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(215,243,107,.4)}
+.btn--ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn--ghost:hover{border-color:var(--lime);color:var(--lime)}
+
+/* header */
+.header{position:fixed;top:0;left:0;right:0;z-index:50;transition:.35s;border-bottom:1px solid transparent}
+.header.scrolled{background:rgba(16,16,19,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.header .container{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{font-family:var(--bebas);font-size:30px;letter-spacing:.12em}
+.logo span{color:var(--lime)}
+.nav{display:flex;gap:28px}
+.nav a{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);transition:.25s}
+.nav a:hover{color:var(--lime)}
+.header .btn{padding:13px 26px;font-size:12px}
+.burger{display:none;flex-direction:column;gap:6px;background:none;border:0;cursor:pointer;padding:8px;z-index:60}
+.burger span{width:26px;height:2px;background:var(--ink);transition:.3s}
+.mobmenu{position:fixed;inset:0;background:var(--bg2);z-index:55;display:flex;flex-direction:column;justify-content:center;padding:0 32px;gap:2px;transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.3,1)}
+.mobmenu__x{position:absolute;top:18px;right:20px;background:none;border:0;color:var(--ink);font-size:30px;cursor:pointer;padding:10px;line-height:1}
+.mobmenu.open{transform:none}
+.mobmenu a{font-family:var(--sans);font-weight:700;font-size:22px;letter-spacing:.02em;padding:16px 0;border-bottom:1px solid var(--line)}
+body.lock{overflow:hidden}
+body.lock .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+body.lock .burger span:nth-child(2){opacity:0}
+body.lock .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* hero */
+.hero{padding:150px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-160px;width:640px;height:640px;border-radius:50%;
+  background:radial-gradient(circle,rgba(215,243,107,.13),transparent 68%)}
+.hero__grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center;position:relative}
+.creditline{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--soft);margin-bottom:24px}
+.creditline b{color:var(--lime)}
+.hero h1{font-family:var(--bebas);font-size:clamp(52px,7.2vw,104px);line-height:.96;letter-spacing:.015em;margin:18px 0 22px}
+.hero h1 span{color:var(--lime)}
+.hero__text{font-size:17px;color:var(--soft);max-width:520px;margin-bottom:30px}
+.hero__text b{color:var(--ink)}
+.hero__cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero__note{margin-top:20px;font-size:13.5px;color:var(--soft)}
+.hero__note b{color:var(--lime)}
+.hero__side{position:relative}
+.hero__side>img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:20px;border:1px solid var(--line)}
+.hcard{position:absolute;background:rgba(28,28,33,.92);backdrop-filter:blur(8px);border:1px solid var(--line);
+  border-radius:16px;padding:16px 20px;box-shadow:0 16px 44px rgba(0,0,0,.4)}
+.hcard b{font-family:var(--bebas);font-size:30px;color:var(--lime);display:block;line-height:1;letter-spacing:.03em}
+.hcard span{font-size:12px;color:var(--soft);font-weight:600}
+.hcard--1{left:-40px;top:60px}
+.hcard--2{right:-24px;bottom:60px}
+
+/* ticker */
+.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;overflow:hidden;white-space:nowrap}
+.ticker__in{display:inline-block;animation:tick 26s linear infinite;font-family:var(--bebas);font-size:22px;letter-spacing:.14em;color:var(--soft)}
+.ticker__in i{font-style:normal;color:var(--lime);margin:0 18px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding:92px 0}
+.sec-head{max-width:680px;margin-bottom:50px}
+.sec-head .kicker{display:block;margin-bottom:14px}
+.sec-head p{margin-top:14px;color:var(--soft);font-size:16px}
+
+/* who */
+.who__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.who{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px;transition:.25s}
+.who:hover{border-color:rgba(215,243,107,.5);transform:translateY(-4px)}
+.who i{font-style:normal;font-family:var(--bebas);font-size:26px;color:var(--lime);display:block;margin-bottom:14px;letter-spacing:.06em}
+.who h3{font-size:18px;font-weight:800;margin-bottom:8px}
+.who p{font-size:14.5px;color:var(--soft)}
+
+/* results */
+.results{background:var(--bg2)}
+.res__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.res{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.res b{font-family:var(--bebas);font-size:38px;color:var(--lime);display:block;line-height:1;letter-spacing:.02em}
+.res h4{font-size:15px;font-weight:800;margin:10px 0 6px}
+.res p{font-size:13px;color:var(--soft)}
+.res__grid .res:nth-child(2){transform:translateY(18px)}
+.res__grid .res:nth-child(4){transform:translateY(18px)}
+
+/* program */
+.mod{border:1px solid var(--line);border-radius:16px;margin-bottom:12px;background:var(--card);overflow:hidden;transition:.25s}
+.mod:hover{border-color:rgba(215,243,107,.4)}
+.mod summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:20px;padding:24px 26px}
+.mod summary::-webkit-details-marker{display:none}
+.mod__n{font-family:var(--bebas);font-size:26px;color:var(--lime);flex-shrink:0;width:56px}
+.mod h3{font-size:clamp(16px,2vw,21px);font-weight:800;flex:1}
+.mod summary::after{content:'+';font-size:26px;color:var(--lime);transition:.3s;flex-shrink:0}
+.mod[open] summary::after{transform:rotate(45deg)}
+.mod p{color:var(--soft);font-size:14.5px;padding:0 26px 24px 102px;max-width:720px}
+
+/* mentor */
+.mentor{background:var(--bg2)}
+.mentor__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center}
+.mentor__ph img{border-radius:20px;width:100%;aspect-ratio:3/3.4;object-fit:cover;border:1px solid var(--line)}
+.mentor h2{margin:14px 0 18px}
+.mentor p{color:var(--soft);font-size:16px;max-width:560px}
+.mentor p b{color:var(--ink)}
+.mtags{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.mtags span{font-size:12.5px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:8px 16px;color:var(--soft)}
+.mtags span b{color:var(--lime)}
+
+/* pricing */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.tier{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:36px 30px;display:flex;flex-direction:column;position:relative;transition:.25s}
+.tier:hover{transform:translateY(-5px);border-color:rgba(215,243,107,.5)}
+.tier--hot{background:linear-gradient(180deg,rgba(215,243,107,.14),rgba(215,243,107,.04));border-color:var(--lime)}
+.tier__tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--lime);color:#12120e;
+  font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:6px 16px;border-radius:999px;white-space:nowrap}
+.tier h3{font-size:19px;font-weight:800}
+.tier__price{font-family:var(--bebas);font-size:52px;color:var(--lime);margin:14px 0 2px;line-height:1;letter-spacing:.02em}
+.tier__old{font-size:15px;color:var(--soft);text-decoration:line-through}
+.tier ul{list-style:none;margin:22px 0 28px;flex:1}
+.tier li{font-size:14.5px;color:var(--soft);padding:7px 0 7px 26px;position:relative}
+.tier li::before{content:'✓';position:absolute;left:0;color:var(--lime);font-weight:800}
+.tier .btn{width:100%}
+.timer{margin-top:44px;background:var(--card);border:1px dashed rgba(215,243,107,.5);border-radius:18px;padding:26px 30px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.timer p{font-weight:800;font-size:16px}
+.timer p span{color:var(--lime)}
+.timer__clock{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.timer__clock div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-align:center;min-width:64px;flex:0 1 auto}
+.timer__clock b{font-family:var(--bebas);font-size:34px;display:block;line-height:1;color:var(--lime)}
+.timer__clock span{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);font-weight:700}
+
+/* reviews */
+.reviews{background:var(--bg2)}
+.reviews__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rev{position:relative;border-radius:18px;overflow:hidden;min-height:440px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--line)}
+.rev>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+.rev__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,16,19,.05) 25%,rgba(16,16,19,.55) 55%,rgba(16,16,19,.95) 85%)}
+.rev__in{position:relative;padding:26px}
+.rev__sum{font-family:var(--bebas);font-size:30px;color:var(--lime);letter-spacing:.03em}
+.rev p{font-size:14.5px;color:rgba(244,243,238,.92);margin-top:10px}
+.rev b{display:block;margin-top:14px;font-size:14px;color:#fff}
+.rev span{font-size:12.5px;color:var(--lime);font-weight:700}
+
+/* faq */
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;overflow:hidden}
+.faq summary{list-style:none;cursor:pointer;padding:22px 26px;font-weight:800;font-size:16px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-size:22px;color:var(--lime);transition:.3s;flex-shrink:0}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 26px 22px;font-size:14.5px;color:var(--soft)}
+
+/* final */
+.final .wrap{position:relative;border-radius:26px;overflow:hidden}
+.final .wrap>img{width:100%;height:480px;object-fit:cover}
+.final__veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,16,19,.94) 20%,rgba(16,16,19,.55))}
+.final__in{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 7%;max-width:760px}
+.final h2{font-family:var(--bebas);font-size:clamp(38px,5vw,64px);line-height:.98}
+.final h2 span{color:var(--lime)}
+.final p{margin:16px 0 26px;color:var(--soft);max-width:480px}
+.form{display:flex;gap:12px;flex-wrap:wrap}
+.form input{font-family:var(--sans);font-size:15px;padding:17px 22px;border-radius:12px;border:1px solid var(--line);
+  background:rgba(16,16,19,.8);color:var(--ink);outline:none;min-width:220px}
+.form input:focus{border-color:var(--lime)}
+.form-ok{display:none;margin-top:16px;font-weight:800;color:var(--lime)}
+.form-note{margin-top:14px;font-size:12px;color:var(--soft)}
+
+.footer{padding:36px 0;border-top:1px solid var(--line)}
+.footer .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.footer small{font-size:12.5px;color:var(--soft)}
+.footer small b{color:var(--ink)}
+
+@media(max-width:960px){
+  .hero__grid,.mentor__grid{grid-template-columns:1fr;gap:44px}
+  .hero__side{max-width:420px;margin:0 auto}
+  .hcard--1{left:-6px}
+  .hcard--2{right:-6px}
+  .who__grid,.res__grid,.tiers,.reviews__grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+  .res__grid .res:nth-child(2),.res__grid .res:nth-child(4){transform:none}
+}
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .nav,.header .btn{display:none}
+  .burger{display:flex}
+  .hero{padding:96px 0 56px}
+  .hero h1{font-size:clamp(40px,11vw,54px)}
+  .creditline{margin-bottom:16px}
+  section{padding:64px 0}
+  .mod p{padding-left:26px}
+  .mod__n{width:40px}
+  .form input,.form .btn{width:100%}
+  .timer{justify-content:center;text-align:center}
+  .final .wrap>img{height:560px;object-position:right center}
+}
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container">
+    <a class="logo" href="#top">SKILL<span>RISE</span></a>
+    <nav class="nav">
+      <a href="#who">Кому подойдёт</a>
+      <a href="#program">Программа</a>
+      <a href="#mentor">Наставник</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <a class="btn btn--fill" href="#final">Занять место</a>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mobmenu" id="mobmenu">
+  <button class="mobmenu__x" id="mobx" aria-label="Закрыть">×</button>
+  <a href="#who">Кому подойдёт</a>
+  <a href="#program">Программа</a>
+  <a href="#mentor">Наставник</a>
+  <a href="#pricing">Тарифы</a>
+  <a href="#faq">Вопросы</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding-top:150px">
+  <div class="container">
+    <div class="hero__grid">
+      <div>
+        <span class="creditline">сделано: <b>LStudio</b></span>
+        <span class="kicker">Онлайн-курс · 8 недель · поток 22 сентября</span>
+        <h1>Выйди на доход <span style="white-space:nowrap">от 80 000 ₽</span> в месяц онлайн</h1>
+        <p class="hero__text">Освой востребованную удалённую профессию с нуля: <b>практика на реальных проектах</b>, разборы, помощь с первыми заказами. Без воды и мотивационных сказок.</p>
+        <div class="hero__cta">
+          <a class="btn btn--fill" href="#pricing">Занять место со скидкой</a>
+          <a class="btn btn--ghost" href="#program">Программа курса</a>
+        </div>
+        <p class="hero__note">Скидка −30% действует ограниченно · осталось <b>9 мест</b> из 30</p>
+      </div>
+      <div class="hero__side">
+        <img src="img/life.jpg" alt="Свобода работать откуда угодно" fetchpriority="high">
+        <div class="hcard hcard--1"><b>2 300+</b><span>выпускников за 3 года</span></div>
+        <div class="hcard hcard--2"><b>87%</b><span>находят заказы до конца курса</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker__in">
+    КОПИРАЙТИНГ <i>•</i> ТАРГЕТ <i>•</i> SMM <i>•</i> ДИЗАЙН <i>•</i> МОНТАЖ <i>•</i> НЕЙРОСЕТИ <i>•</i> ПРОДАЖИ В ПЕРЕПИСКЕ <i>•</i>
+    КОПИРАЙТИНГ <i>•</i> ТАРГЕТ <i>•</i> SMM <i>•</i> ДИЗАЙН <i>•</i> МОНТАЖ <i>•</i> НЕЙРОСЕТИ <i>•</i> ПРОДАЖИ В ПЕРЕПИСКЕ <i>•</i>
+  </div>
+</div>
+
+<!-- WHO -->
+<section id="who">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Кому подойдёт</span>
+      <h2 class="sec">Курс создан <span>для тех, кто…</span></h2>
+    </div>
+    <div class="who__grid">
+      <div class="who reveal"><i>01</i><h3>Устал от офиса</h3><p>Работаешь за фикс, растёшь медленно, а хочется свободного графика и дохода, который зависит от тебя.</p></div>
+      <div class="who reveal"><i>02</i><h3>Начинает с нуля</h3><p>Нет опыта и «своей» профессии — дадим навык, который покупают прямо сейчас, и первые проекты в портфолио.</p></div>
+      <div class="who reveal"><i>03</i><h3>Уже пробовал, но не взлетело</h3><p>Смотрел ролики, сохранял посты, но системы нет. Здесь — пошаговый путь и наставник, который не бросит.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Цифры вместо обещаний</span>
+      <h2 class="sec">Результаты <span>выпускников</span></h2>
+    </div>
+    <div class="res__grid">
+      <div class="res reveal"><b>96 000 ₽</b><h4>Алина, SMM</h4><p>Первый доход через 5 недель после старта, вела соцсети кофейни</p></div>
+      <div class="res reveal"><b>140 000 ₽</b><h4>Тимур, монтаж</h4><p>Вышел на постоянных клиентов за 2 месяца после выпуска</p></div>
+      <div class="res reveal"><b>78 000 ₽</b><h4>Соня, копирайтинг</h4><p>Совмещает с учёбой, 4 постоянных заказчика</p></div>
+      <div class="res reveal"><b>210 000 ₽</b><h4>Игорь, таргет</h4><p>Ушёл из найма через полгода после курса</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Программа · 8 недель</span>
+      <h2 class="sec">Что будет <span>на курсе</span></h2>
+      <p>Каждую неделю — новый блок, практика на реальном проекте и разбор домашки с наставником.</p>
+    </div>
+    <details class="mod reveal" open><summary><span class="mod__n">01</span><h3>Выбор профессии и быстрый старт</h3></summary><p>Тестируешь 3 востребованных направления и выбираешь своё под характер и цели. Собираем личный план выхода на доход.</p></details>
+    <details class="mod reveal"><summary><span class="mod__n">02</span><h3>База профессии: главные инструменты</h3></summary><p>Осваиваешь рабочие инструменты направления — только то, что реально покупают заказчики, без академической воды.</p></details>
+    <details class="mod reveal"><summary><span class="mod__n">03</span><h3>Практика на реальном проекте</h3></summary><p>Первый проект для портфолио под контролем наставника. Разбор ошибок и доводка до уровня «не стыдно показать».</p></details>
+    <details class="mod reveal"><summary><span class="mod__n">04</span><h3>Портфолио и упаковка</h3></summary><p>Оформляем кейсы, профили на биржах и соцсети так, чтобы заказчик выбирал тебя, а не «того, кто дешевле».</p></details>
+    <details class="mod reveal"><summary><span class="mod__n">05</span><h3>Где брать заказчиков</h3></summary><p>7 рабочих каналов поиска клиентов: биржи, соцсети, нетворкинг, прямые отклики. Скрипты первых сообщений.</p></details>
+    <details class="mod reveal"><summary><span class="mod__n">06</span><h3>Продажи в переписке без страха</h3></summary><p>Как вести диалог, называть цену и закрывать сделку. Разбираем твои реальные переписки с заказчиками.</p></details>
+    <details class="mod reveal"><summary><span class="mod__n">07</span><h3>Первые деньги и сарафан</h3></summary><p>Выводим на первые оплаченные заказы и учимся превращать разовых клиентов в постоянных.</p></details>
+    <details class="mod reveal"><summary><span class="mod__n">08</span><h3>Масштабирование дохода</h3></summary><p>Как поднять чек, собрать очередь из заказчиков и выйти на стабильные 80 000+ ₽ в месяц. Личный план на 3 месяца.</p></details>
+  </div>
+</section>
+
+<!-- MENTOR -->
+<section class="mentor" id="mentor">
+  <div class="container">
+    <div class="mentor__grid">
+      <div class="mentor__ph reveal"><img src="img/mentor.jpg" alt="Наставник курса Денис Савельев"></div>
+      <div class="reveal">
+        <span class="kicker">Наставник</span>
+        <h2 class="sec">Денис <span>Савельев</span></h2>
+        <p>8 лет назад уволился из найма с зарплатой 45 000 ₽. За первый год на фрилансе вышел на <b>120 000 ₽ в месяц</b>, через три года собрал студию из шести человек.</p>
+        <p style="margin-top:14px">С 2022 года ведёт SkillRise: <b>2 300+ выпускников</b>, из них 87% находят заказы ещё до конца обучения. Не обещает «миллион за неделю» — даёт систему.</p>
+        <div class="mtags">
+          <span>доход студии <b>1,4 млн ₽/мес</b></span>
+          <span><b>2 300+</b> учеников</span>
+          <span><b>8 лет</b> на фрилансе</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Тарифы</span>
+      <h2 class="sec">Сколько стоит <span>твой рост</span></h2>
+      <p>Рассрочка без банка — от 2 500 ₽/мес, первый платёж через 2 недели.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <h3>База</h3>
+        <div class="tier__price">14 900 ₽</div>
+        <span class="tier__old">21 900 ₽</span>
+        <ul>
+          <li>8 модулей в записи</li>
+          <li>Рабочие тетради и шаблоны</li>
+          <li>Общий чат потока</li>
+          <li>Доступ 12 месяцев</li>
+        </ul>
+        <a class="btn btn--ghost" href="#final">Выбрать</a>
+      </div>
+      <div class="tier tier--hot reveal">
+        <span class="tier__tag">Хит · −30% до конца недели</span>
+        <h3>Практика</h3>
+        <div class="tier__price">29 900 ₽</div>
+        <span class="tier__old">42 900 ₽</span>
+        <ul>
+          <li>Всё из тарифа «База»</li>
+          <li>Проверка домашек наставником</li>
+          <li>Разборы переписок с заказчиками</li>
+          <li>Реальный проект в портфолио</li>
+          <li>Доступ навсегда</li>
+        </ul>
+        <a class="btn btn--fill" href="#final">Занять место</a>
+      </div>
+      <div class="tier reveal">
+        <h3>Личный наставник</h3>
+        <div class="tier__price">69 900 ₽</div>
+        <span class="tier__old">99 900 ₽</span>
+        <ul>
+          <li>Всё из тарифа «Практика»</li>
+          <li>4 личные сессии с Денисом</li>
+          <li>Ведём до первого дохода 1 на 1</li>
+          <li>2 месяца поддержки после курса</li>
+        </ul>
+        <a class="btn btn--ghost" href="#final">Выбрать</a>
+      </div>
+    </div>
+    <div class="timer reveal">
+      <p>До конца скидки −30%: <span>потом цена вернётся к полной</span></p>
+      <div class="timer__clock">
+        <div><b id="tD">00</b><span>дней</span></div>
+        <div><b id="tH">00</b><span>часов</span></div>
+        <div><b id="tM">00</b><span>минут</span></div>
+        <div><b id="tS">00</b><span>секунд</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Отзывы</span>
+      <h2 class="sec">Они уже <span>зарабатывают</span></h2>
+    </div>
+    <div class="reviews__grid">
+      <div class="rev reveal"><img src="img/rev1.jpg" alt="Наташа, выпускница SkillRise"><div class="rev__veil"></div><div class="rev__in"><div class="rev__sum">84 000 ₽/мес</div><p>«Сомневалась до последнего — гуманитарий, 30+, двое детей. Через 6 недель закрыла первый заказ, сейчас работаю 4 часа в день из дома».</p><b>Наташа, 34</b><span>тариф «Практика»</span></div></div>
+      <div class="rev reveal"><img src="img/rev2.jpg" alt="Артём, выпускник SkillRise"><div class="rev__veil"></div><div class="rev__in"><div class="rev__sum">первый заказ за 3 недели</div><p>«Год смотрел бесплатные ролики и не двигался. Здесь заставили делать, а не смотреть — и оно сработало».</p><b>Артём, 23</b><span>тариф «База»</span></div></div>
+      <div class="rev reveal"><img src="img/rev3.jpg" alt="Ксения, выпускница SkillRise"><div class="rev__veil"></div><div class="rev__in"><div class="rev__sum">×3 к прошлой зарплате</div><p>«Брал тариф с наставником. Денис лично разобрал мои переписки — после этого закрыла 2 заказа из 3. Ушла из найма в мае».</p><b>Ксения, 28</b><span>тариф «Личный наставник»</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="kicker">Вопросы</span>
+      <h2 class="sec">Честные <span>ответы</span></h2>
+    </div>
+    <details class="reveal"><summary>У меня нет никакого опыта. Справлюсь?</summary><p>Да — курс построен с нуля: сначала выбираем профессию под тебя, потом осваиваем её по шагам. 60% наших учеников начинали без опыта.</p></details>
+    <details class="reveal"><summary>Сколько времени нужно уделять?</summary><p>1,5–2 часа в день: урок + практика. Занятость можно распределять как удобно, записи остаются.</p></details>
+    <details class="reveal"><summary>А если не получится найти заказы?</summary><p>На тарифах «Практика» и «Личный наставник» мы ведём тебя до первого оплаченного заказа: разбираем отклики и переписки, пока не получится.</p></details>
+    <details class="reveal"><summary>Есть ли возврат?</summary><p>Да, в течение 7 дней после старта вернём полную стоимость, если поймёшь, что формат не твой.</p></details>
+    <details class="reveal"><summary>Это не «курс про курсы»?</summary><p>Нет. Мы учим конкретным навыкам (копирайтинг, монтаж, таргет, SMM, дизайн), которые покупают обычный бизнес: кафе, магазины, эксперты.</p></details>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final" id="final">
+  <div class="container">
+    <div class="wrap reveal">
+      <img src="img/work.jpg" alt="Доход онлайн">
+      <div class="final__veil"></div>
+      <div class="final__in">
+        <h2>Осталось 9 мест <span>со скидкой −30%</span></h2>
+        <p>Оставь контакты — вышлем подробную программу и бесплатный урок «Как выбрать онлайн-профессию».</p>
+        <form class="form" id="leadForm">
+          <input type="text" name="name" placeholder="Имя" required>
+          <input type="tel" name="phone" placeholder="Телефон или Telegram" required>
+          <button class="btn btn--fill" type="submit">Забрать место</button>
+        </form>
+        <div class="form-ok" id="formOk">Готово! Проверь сообщения — уже летит программа</div>
+        <p class="form-note">Нажимая кнопку, ты соглашаешься с политикой конфиденциальности</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <small>© 2025 SkillRise · Денис Савельев</small>
+    <small>сайт создан <b>LStudio</b> — Даниил Лисицин и Анастасия Селиванова</small>
+  </div>
+</footer>
+
+<script>
+const header=document.getElementById('header');
+addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40),{passive:true});
+const burger=document.getElementById('burger'),mob=document.getElementById('mobmenu');
+burger.addEventListener('click',()=>{mob.classList.toggle('open');document.body.classList.toggle('lock')});
+document.getElementById('mobx').addEventListener('click',()=>{mob.classList.remove('open');document.body.classList.remove('lock')});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('open');document.body.classList.remove('lock')}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+let end=localStorage.getItem('skillrise_end');
+if(!end||+end<Date.now()){end=Date.now()+13*864e5;localStorage.setItem('skillrise_end',end)}
+function tick(){
+  let d=Math.max(0,+end-Date.now());
+  const p=(n,id)=>document.getElementById(id).textContent=String(n).padStart(2,'0');
+  p(Math.floor(d/864e5),'tD');p(Math.floor(d/36e5)%24,'tH');p(Math.floor(d/6e4)%60,'tM');p(Math.floor(d/1e3)%60,'tS');
+}
+tick();setInterval(tick,1000);
+document.getElementById('leadForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('formOk').style.display='block';
+  e.target.querySelectorAll('input').forEach(i=>i.value='');
+});
+</script>
+</body>
+</html>
